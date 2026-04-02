@@ -1,4 +1,4 @@
-name: CI/CD Build and Deploy
+name: CI/CD Build and Push
 
 on:
   push:
@@ -31,20 +31,3 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository }}:latest .
           docker push ghcr.io/${{ github.repository }}:latest
-
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          port: ${{ secrets.DEPLOY_PORT }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script: |
-            docker pull ghcr.io/${{ github.repository }}:latest
-            docker stop my-app || true
-            docker rm my-app || true
-            docker run -d --name my-app -p 5000:8080 --restart unless-stopped ghcr.io/${{ github.repository }}:latest
