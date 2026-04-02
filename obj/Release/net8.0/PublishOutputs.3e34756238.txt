@@ -1,0 +1,5 @@
+C:\is-labs\my-app\bin\Release\net8.0\publish\IsLabApp.exe
+C:\is-labs\my-app\bin\Release\net8.0\publish\IsLabApp.dll
+C:\is-labs\my-app\bin\Release\net8.0\publish\IsLabApp.deps.json
+C:\is-labs\my-app\bin\Release\net8.0\publish\IsLabApp.runtimeconfig.json
+C:\is-labs\my-app\bin\Release\net8.0\publish\IsLabApp.pdb
